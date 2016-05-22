@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "364268535845",
+    "firebase_url": "https://project-5457758639338205484.firebaseio.com",
+    "project_id": "project-5457758639338205484",
+    "storage_bucket": "project-5457758639338205484.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364268535845:android:c1d130003385cd43",
+        "android_client_info": {
+          "package_name": "com.felkertech.n.cumulustv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364268535845-kajfiru5eqnkldr962jq334btj9fu2d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALwZ5-CEcR2NHnGj0pXqYMj8fFfc57sy8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
