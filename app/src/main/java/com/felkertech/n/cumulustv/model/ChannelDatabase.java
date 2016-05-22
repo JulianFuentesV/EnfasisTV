@@ -32,6 +32,7 @@ public class ChannelDatabase {
     Context mContext;
     String TAG = "cumulus:ChannelDatabase";
     public static final String KEY = "JSONDATA";
+
     public ChannelDatabase(final Context mContext) {
         this.mContext = mContext;
         try {

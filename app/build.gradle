@@ -51,6 +51,10 @@ dependencies {
     compile 'com.android.support:leanback-v17:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
 
+    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.3'
+    compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@jar'
+    compile 'com.google.code.gson:gson:2.6.2'
+
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:palette-v7:23.4.0'
