@@ -169,7 +169,7 @@ public class LeanbackFragment extends BrowseFragment
 //                channelRowAdapter.add(channelInfo.name);
                 index++;
             }
-            HeaderItem header = new HeaderItem(0, "My Channels");
+            HeaderItem header = new HeaderItem(0, "Mis Canales");
             mRowsAdapter.add(new ListRow(header, channelRowAdapter));
         } catch (JSONException e) {
             e.printStackTrace();
