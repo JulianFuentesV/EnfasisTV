@@ -117,7 +117,7 @@ public class ChanelsDao {
                     mList = mTable.execute().get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                   this.cancel(true);A
+                   this.cancel(true);
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                     this.cancel(true);
