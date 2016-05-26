@@ -7,6 +7,7 @@ import android.util.Log;
 import com.felkertech.n.Net.ChanelsDao;
 import com.felkertech.n.cumulustv.R;
 import com.felkertech.n.cumulustv.model.Channelsinfo;
+import com.felkertech.n.cumulustv.model.JSONChannel;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceList;
 
@@ -32,6 +33,7 @@ public class TestAzureActivity extends Activity implements ChanelsDao.OnDataBase
             );
             chanelsDao = new ChanelsDao(mClient);
             chanelsDao.getChannelsInfo(this);
+            chanelsDao.getChanelsInJsonObject(this);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -56,6 +58,29 @@ public class TestAzureActivity extends Activity implements ChanelsDao.OnDataBase
             }
 
         }
+    }
+
+    @Override
+    public void OnQueryResponseInJson(int state, JSONChannel[] data) {
+        if (state == ChanelsDao.FAILED_RESPONSE){
+            Log.i("AZURE","QUERY FAILED");
+        }
+        else if (state == ChanelsDao.COMPLETE_RESPONSE){
+                Log.i("AZURE",data[0].toString() + " " + data[1].toString());
+        }
+    }
+    }
+
+
+    /*
+    @Override
+    public void OnQueryResponse(int state, MobileServiceList<Channelsinfo> data) {
+
 
     }
-}
+    */
+
+
+
+
+

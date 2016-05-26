@@ -8,6 +8,10 @@ public class Channelsinfo {
     String name;
     String urlImg;
     String urlStream;
+    String channelnumber;
+    String genres;
+
+
 
 // region Getters and Setters
     public String getId() {
@@ -40,6 +44,22 @@ public class Channelsinfo {
 
     public void setUrlStream(String urlStream) {
         this.urlStream = urlStream;
+    }
+
+    public String getChannelnumber() {
+        return channelnumber;
+    }
+
+    public void setChannelnumber(String channelnumber) {
+        this.channelnumber = channelnumber;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
     }
 
     //endregion
