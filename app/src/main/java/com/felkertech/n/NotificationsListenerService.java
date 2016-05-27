@@ -1,8 +1,10 @@
 package com.felkertech.n;
 
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.felkertech.n.recievers.NotificacionReceiver;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -26,6 +28,10 @@ public class NotificationsListenerService extends FirebaseMessagingService {
         //super.onMessageReceived(remoteMessage);
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+
+        Intent notificar = new Intent(NotificacionReceiver.ACTION);
+        notificar.putExtra(NotificacionReceiver.EXTRA_MSG, remoteMessage.getNotification().getBody());
+        sendBroadcast(notificar);
     }
 
     @Override

@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toast.makeText(this, "Entro a MainActivity",Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onCreate");
         //final String info = TvContract.buildInputId(new ComponentName("com.felkertech.n.cumulustv", ".CumulusTvService"));
         sm = new DriveSettingsManager(this);
