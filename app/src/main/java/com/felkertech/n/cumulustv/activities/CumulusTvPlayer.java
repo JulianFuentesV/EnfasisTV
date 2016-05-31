@@ -1,20 +1,28 @@
 package com.felkertech.n.cumulustv.activities;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v17.leanback.widget.BaseCardView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AnimationSet;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.felkertech.channelsurfer.players.TvInputPlayer;
 import com.felkertech.channelsurfer.players.WebInputPlayer;
 import com.felkertech.n.cumulustv.R;
+import com.felkertech.n.recievers.NotificacionReceiver;
 import com.google.android.exoplayer.ExoPlaybackException;
 
 import java.net.URL;
@@ -22,18 +30,26 @@ import java.net.URL;
 /**
  * Created by Nick on 7/12/2015.
  */
-public class CumulusTvPlayer extends AppCompatActivity {
+public class CumulusTvPlayer extends AppCompatActivity implements NotificacionReceiver.OnNotificationListener {
     private String urlStream;
     private VideoView myVideoView;
     private URL url;
     private String TAG = "cumulus:CumulusTvPlayer";
     public static final String KEY_VIDEO_URL = "VIDEO_URL";
     private TvInputPlayer exoPlayer;
+    NotificacionReceiver receiver;
+
+    BaseCardView card;
+    TextView msg;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /* Doing it the native way */
+
+
         Intent parameters = getIntent();
         if(parameters == null) {
             setContentView(R.layout.fullvideo);//***************
@@ -116,6 +132,21 @@ public class CumulusTvPlayer extends AppCompatActivity {
                 exoPlayer.setPlayWhenReady(true);
             }
         }
+
+        //Toast.makeText(this, "Entro a TVPlayer",Toast.LENGTH_SHORT).show();
+        receiver = new NotificacionReceiver(this);
+
+        IntentFilter filter = new IntentFilter(NotificacionReceiver.ACTION);
+        registerReceiver(receiver, filter);
+
+        card = (BaseCardView) findViewById(R.id.card);
+        msg = (TextView) findViewById(R.id.msg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     @Override
@@ -123,5 +154,23 @@ public class CumulusTvPlayer extends AppCompatActivity {
         super.onStop();
         exoPlayer.stop();
         exoPlayer.release();
+    }
+
+    @Override
+    public void onNotification(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        this.msg.setText(msg);
+        card.setVisibility(View.VISIBLE);
+
+        ObjectAnimator animatorMostrar = ObjectAnimator.ofFloat(card, "alpha",0.0f,1.0f);
+        animatorMostrar.setDuration(500);
+
+        ObjectAnimator animatorOcultar = ObjectAnimator.ofFloat(card, "alpha",1.0f,0.0f);
+        animatorOcultar.setDuration(500);
+
+        AnimatorSet set = new AnimatorSet();
+        set.play(animatorMostrar).before(animatorOcultar);
+        set.play(animatorOcultar).after(2000);
+        set.start();
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EnfasisTV.iml" filepath="$PROJECT_DIR$/EnfasisTV.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CumulusTV.iml" filepath="$PROJECT_DIR$/CumulusTV.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
