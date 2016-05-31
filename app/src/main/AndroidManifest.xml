@@ -54,7 +54,7 @@
             android:label="Test Stream"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name="com.felkertech.n.Test.TestAzureActivity"
+            android:name="com.felkertech.n.SetInfoActivity"
             android:exported="true"
             android:label="CumulusTV"
             android:theme="@style/CompatTheme">
@@ -204,7 +204,10 @@
                 android:resource="@xml/cumulus_dreams_info" />
         </service>
 
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity"
+            android:theme="@style/CompatTheme"
+            />
+        <activity android:name="com.felkertech.n.Test.TestAzureActivity"></activity>
     </application>
 
 </manifest>

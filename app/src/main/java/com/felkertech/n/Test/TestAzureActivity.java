@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.felkertech.n.AppUtil.AppUtil;
 import com.felkertech.n.Net.ChanelsDao;
 import com.felkertech.n.cumulustv.R;
 import com.felkertech.n.cumulustv.model.Channelsinfo;
@@ -67,18 +68,21 @@ public class TestAzureActivity extends Activity implements ChanelsDao.OnDataBase
         }
         else if (state == ChanelsDao.COMPLETE_RESPONSE){
                 Log.i("AZURE",data[0].toString() + " " + data[1].toString());
+            AppUtil.getJsonChannels(data);
+            printInLogJsonChannles();
         }
     }
-    }
 
-
-    /*
-    @Override
-    public void OnQueryResponse(int state, MobileServiceList<Channelsinfo> data) {
+    private void printInLogJsonChannles() {
+        Log.i("JSONCHANELS ",AppUtil.getJsonChannels(null)[0].toString());
+        Log.i("JSONCHANELS ",AppUtil.getJsonChannels(null)[1].toString());
 
 
     }
-    */
+}
+
+
+
 
 
 

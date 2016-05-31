@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.felkertech.n.cumulustv.model.Channelsinfo;
 import com.felkertech.n.cumulustv.model.JSONChannel;
-import com.felkertech.n.cumulustv.xmltv.Channel;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 import com.microsoft.windowsazure.mobileservices.MobileServiceList;
@@ -135,7 +134,7 @@ public class ChanelsDao {
                 JSONChannel channel;
                 List<JSONChannel> data = new ArrayList<>();
                 for (int i = 0; i< mList.size(); i++){
-                    channel = new JSONChannel(mList.get(i).getChannelnumber(),mList.get(i).getName(),mList.get(i).getUrlStream(),mList.get(i).getUrlImg(),"",mList.get(i).getGenres());
+                    channel = new JSONChannel(mList.get(i).getChannelnumber(),mList.get(i).getName(),mList.get(i).getUrlstream(),mList.get(i).getUrlimg(),"",mList.get(i).getGenres());
                     data.add(channel);
                 }
 

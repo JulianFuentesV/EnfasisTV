@@ -6,8 +6,8 @@ package com.felkertech.n.cumulustv.model;
 public class Channelsinfo {
     String id;
     String name;
-    String urlImg;
-    String urlStream;
+    String urlimg;
+    String urlstream;
     String channelnumber;
     String genres;
 
@@ -30,20 +30,20 @@ public class Channelsinfo {
         this.name = name;
     }
 
-    public String getUrlImg() {
-        return urlImg;
+    public String getUrlimg() {
+        return urlimg;
     }
 
-    public void setUrlImg(String urlImg) {
-        this.urlImg = urlImg;
+    public void setUrlimg(String urlimg) {
+        this.urlimg = urlimg;
     }
 
-    public String getUrlStream() {
-        return urlStream;
+    public String getUrlstream() {
+        return urlstream;
     }
 
-    public void setUrlStream(String urlStream) {
-        this.urlStream = urlStream;
+    public void setUrlstream(String urlstream) {
+        this.urlstream = urlstream;
     }
 
     public String getChannelnumber() {
