@@ -21,10 +21,15 @@ import android.widget.VideoView;
 
 import com.felkertech.channelsurfer.players.TvInputPlayer;
 import com.felkertech.channelsurfer.players.WebInputPlayer;
+import com.felkertech.n.Net.ExtraInfoDao;
 import com.felkertech.n.cumulustv.R;
+import com.felkertech.n.cumulustv.model.Extrainfo;
 import com.felkertech.n.recievers.NotificacionReceiver;
 import com.google.android.exoplayer.ExoPlaybackException;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.MobileServiceList;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -40,14 +45,24 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
     NotificacionReceiver receiver;
 
     BaseCardView card;
-    TextView msg;
-
+    TextView msgInterface;
+    MobileServiceClient mClient;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /* Doing it the native way */
+
+        try {
+            mClient = new MobileServiceClient(
+                    "https://enfasistv.azure-mobile.net/",
+                    "LfyxHixuSjrIUIakypACSXzVdhlPGd16",
+                    this
+            );
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
 
         Intent parameters = getIntent();
@@ -140,7 +155,7 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
         registerReceiver(receiver, filter);
 
         card = (BaseCardView) findViewById(R.id.card);
-        msg = (TextView) findViewById(R.id.msg);
+        msgInterface = (TextView) findViewById(R.id.msg);
     }
 
     @Override
@@ -158,19 +173,35 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
 
     @Override
     public void onNotification(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-        this.msg.setText(msg);
-        card.setVisibility(View.VISIBLE);
+        ExtraInfoDao extraInfoDao = new ExtraInfoDao(mClient);
+        extraInfoDao.getExtraInfo(new ExtraInfoDao.OnDataBaseResponse() {
+            @Override
+            public void OnQueryResponse(int state, MobileServiceList<Extrainfo> data) {
+                if (state ==ExtraInfoDao.COMPLETE_RESPONSE ){
+                    Toast.makeText(getApplicationContext(),data.get(0).getTitle(),Toast.LENGTH_SHORT).show();
+                    msgInterface.setText(data.get(0).getDescription());
+                    card.setVisibility(View.VISIBLE);
 
-        ObjectAnimator animatorMostrar = ObjectAnimator.ofFloat(card, "alpha",0.0f,1.0f);
-        animatorMostrar.setDuration(500);
+                    ObjectAnimator animatorMostrar = ObjectAnimator.ofFloat(card, "alpha",0.0f,1.0f);
+                    animatorMostrar.setDuration(500);
 
-        ObjectAnimator animatorOcultar = ObjectAnimator.ofFloat(card, "alpha",1.0f,0.0f);
-        animatorOcultar.setDuration(500);
+                    ObjectAnimator animatorOcultar = ObjectAnimator.ofFloat(card, "alpha",1.0f,0.0f);
+                    animatorOcultar.setDuration(500);
 
-        AnimatorSet set = new AnimatorSet();
-        set.play(animatorMostrar).before(animatorOcultar);
-        set.play(animatorOcultar).after(2000);
-        set.start();
+                    AnimatorSet set = new AnimatorSet();
+                    set.play(animatorMostrar).before(animatorOcultar);
+                    set.play(animatorOcultar).after(2000);
+                    set.start();
+
+                }
+
+                else {
+                    Toast.makeText(getApplicationContext(),"Fallo not push",Toast.LENGTH_SHORT).show();
+                }
+            }
+        },msg);
+
+
+
     }
 }
