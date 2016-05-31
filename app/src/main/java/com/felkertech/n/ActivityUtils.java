@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.felkertech.channelsurfer.sync.SyncUtils;
 import com.felkertech.channelsurfer.utils.LiveChannelsUtils;
+import com.felkertech.n.AppUtil.AppUtil;
 import com.felkertech.n.boilerplate.Utils.AppUtils;
 import com.felkertech.n.boilerplate.Utils.DriveSettingsManager;
 import com.felkertech.n.boilerplate.Utils.PermissionUtils;
@@ -52,65 +53,7 @@ public class ActivityUtils {
     private static final String TAG = "cumulus:ActivityUtils";
     /* SUGGESTED CHANNELS */
     public static JSONChannel[] getSuggestedChannels() {
-                /*
-                0xx NEWS
-                1xx SCIENCE/TECH/NATURE
-                2xx HISTORY/EDUCATION
-                3xx SPORTS/VIDEO GAMES
-                4xx MUSIC
-                5xx FICTION
-                6xx NONFICTION
-                7xx GOVERNMENT/SOCIETY
-                9xx MISC
-                 */
-        final JSONChannel[] channels = { /* Some via http://rgw.ustream.tv/json.php/Ustream.searchBroadcast/ */
-               /* new JSONChannel("001",
-                        "Sky News",
-                        "https://www.youtube.com/embed/y60wDzZt8yg?autoplay=1",
-                        "http://news.sky.com/images/33dc2677.sky-news-logo.png", "",
-                        TvContract.Programs.Genres.NEWS),
-                new JSONChannel("002",
-                        "Taiwan Formosa Live News",
-                        "https://www.youtube.com/embed/XxJKnDLYZz4?autoplay=1",
-                        "https://i.ytimg.com/vi/XxJKnDLYZz4/maxresdefault_live.jpg", "",
-                        TvContract.Programs.Genres.NEWS),*/
-                new JSONChannel("100",
-                        "TNT",
-                        "http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL435/PROFILE03.m3u8",
-                        "https://i.ytimg.com/vi/b9EyURZxiHA/maxresdefault.jpg", "",
-                        TvContract.Programs.Genres.TECH_SCIENCE),
-                new JSONChannel("101",
-                        "Cinemax",
-                        "http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL481/PROFILE03.m3u8 ",
-                        "http://www.thedailytelevision.com/sites/default/files/notas/imagenes/interior/cinemax_logo_0.jpg", "",
-                        TvContract.Programs.Genres.TECH_SCIENCE),
-
-                new JSONChannel("102",
-                        "Universal",
-                        "http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL207/PROFILE03.m3u8 ",
-                        "http://talkmediaafrica.com/wp-content/uploads/2013/04/Universal-Channel-new-logo.jpg", "",
-                        TvContract.Programs.Genres.ANIMAL_WILDLIFE),
-                /*new JSONChannel("168",
-                        "Audubon Osprey Cam",
-                        "http://iphone-streaming.ustream.tv/uhls/11378037/streams/live/iphone/playlist.m3u8",
-                        "http://static-cdn1.ustream.tv/i/channel/live/1_11378037,256x144,b:2015071514.jpg", "",
-                        TvContract.Programs.Genres.ANIMAL_WILDLIFE),*/
-//                        new JSONChannel("400", "Beats One", "http://stream.connectcast.tv:1935/live/CC-EC1245DB-5C6A-CF57-D13A-BB36B3CBB488-34313/playlist.m3u8", "")
-                new JSONChannel("103",
-                        "Space",
-                        "http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL445/PROFILE03.m3u8",
-                        "http://files.diariodesena.webnode.com.br/200000067-8c8b98d85f/space7.png", "",
-                        TvContract.Programs.Genres.MUSIC),
-
-/*
-                        new JSONChannel("900", "Euronews De", "http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/14-live.m3u8", ""),
-                        new JSONChannel("901", "TVI (Portugal)", "http://noscdn1.connectedviews.com:1935/live/smil:tvi.smil/playlist.m3u8", ""),
-                        new JSONChannel("902", "PHOENIXHD", "http://teleboy.customers.cdn.iptv.ch/1122/index.m3u8", ""),
-                        new JSONChannel("903", "Sport 1 Germany", "http://streaming-hub.com/tv/i/sport1_1@97464/index_1300_av-p.m3u8?sd=10&rebase=on", ""),
-                        new JSONChannel("904", "RTP International", "http://rtp-pull-live.hls.adaptive.level3.net/liverepeater/rtpi_5ch120h264.stream/livestream.m3u8", "")
-*/
-        };
-        return channels;
+        return AppUtil.getJsonChannels(null);
     }
     public static void openSuggestedChannels(final Activity mActivity, final GoogleApiClient gapi) {
         final JSONChannel[] channels = getSuggestedChannels();
