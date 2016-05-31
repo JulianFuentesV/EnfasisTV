@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name" translatable="false">Cumulus TV</string>
-    <string name="sample_tv_input_name" translatable="false">Cumulus TV</string>
+    <string name="app_name" translatable="false">EnfasisTV</string>
+    <string name="sample_tv_input_name" translatable="false">EnfasisTV</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tv_input_activity" translatable="false">com.felkertech.n.cumulustv.activities.CumulusChannelsSetup</string>
 
@@ -25,7 +25,7 @@
     <!--<string name="browse_title"><![CDATA[Videos by Your Company]]></string>-->
     <!--<string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>-->
     <string name="about_app" translatable="false">@string/settings_about</string>
-    <string name="about_app_description">%1$s\nBackground art by to Marcelo Franceschini\nFrench Translations by @mcmjau\n\nThe app is open source and available on GitHub.</string>
+    <string name="about_app_description">Aplicacion con canales en streaming con fines educativos en la Universidad del Cauca</string>
     <string name="grid_view">Grid View</string>
     <string name="error_fragment">Error Fragment</string>
     <string name="should_start">shouldStart</string>
@@ -35,15 +35,15 @@
     <!--Leanback Menu Items-->
     <string name="manage_livechannels">Open Live Channels</string>
     <string name="manage_add_suggested">Add Suggested Channels</string>
-    <string name="manage_add_new">Add New Channel</string>
+    <string name="manage_add_new">Agregar nuevo canal</string>
 
     <string name="settings_sync_file">Sync File with Google Drive</string>
     <string name="settings_browse_plugins">Browse Plugins</string>
     <string name="settings_switch_google_drive">Import from Google Drive</string>
     <string name="settings_refresh_cloud_local">Redownload Channel List</string>
     <string name="settings_view_licenses">View Software Licenses</string>
-    <string name="settings_reset_channel_data">Reset Channel Data</string>
-    <string name="settings_about">About Cumulus TV</string>
+    <string name="settings_reset_channel_data">Borrar Mis Canales</string>
+    <string name="settings_about">Acerca de EnfasisTV</string>
     <string name="settings_read_xmltv">Read XMLTV (Experimental)</string>
 
     <string name="more_actions">More Actions</string>

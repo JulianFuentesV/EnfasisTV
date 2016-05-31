@@ -169,7 +169,7 @@ public class LeanbackFragment extends BrowseFragment
 //                channelRowAdapter.add(channelInfo.name);
                 index++;
             }
-            HeaderItem header = new HeaderItem(0, "My Channels");
+            HeaderItem header = new HeaderItem(0, "Mis Canales");
             mRowsAdapter.add(new ListRow(header, channelRowAdapter));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -178,7 +178,7 @@ public class LeanbackFragment extends BrowseFragment
         //Second row is suggested channels (not really yet)
         CardPresenter suggestedChannelPresenter = new CardPresenter();
         ArrayObjectAdapter suggestedChannelAdapter = new ArrayObjectAdapter(suggestedChannelPresenter);
-        HeaderItem suggestedChannelsHeader = new HeaderItem(1, "Suggested Channels");
+        HeaderItem suggestedChannelsHeader = new HeaderItem(1, "Lista de Canales");
         JSONChannel[] suggestedChannels = ActivityUtils.getSuggestedChannels();
         for(JSONChannel jsonChannel: suggestedChannels) {
             suggestedChannelAdapter.add(MovieList.buildMovieInfo(
@@ -194,26 +194,12 @@ public class LeanbackFragment extends BrowseFragment
         mRowsAdapter.add(new ListRow(suggestedChannelsHeader, suggestedChannelAdapter));
 
         //Third row is Drive
-        HeaderItem driveHeader = new HeaderItem(1, "Google Drive Sync");
-        GridItemPresenter drivePresenter = new GridItemPresenter();
-        ArrayObjectAdapter driveAdapter = new ArrayObjectAdapter(drivePresenter);
 
-/*        IconCardView iconCardView = new IconCardView(mActivity);
-        iconCardView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        iconCardView.setTitleText("Redownload");
-        driveAdapter.add(iconCardView);*/
-        driveAdapter.add(getString(R.string.connect_drive));
-        driveAdapter.add(getString(R.string.settings_refresh_cloud_local));
-//        driveAdapter.add("Upload to cloud");
-        driveAdapter.add(getString(R.string.settings_switch_google_drive));
-//        driveAdapter.add(getString(R.string.settings_sync_file));
-        mRowsAdapter.add(new ListRow(driveHeader, driveAdapter));
 
         //Fourth row are actions
-        HeaderItem gridHeader = new HeaderItem(1, "Manage");
+        HeaderItem gridHeader = new HeaderItem(1, "Edicion");
         GridItemPresenter mGridPresenter = new GridItemPresenter();
         ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);
-        gridRowAdapter.add(getString(R.string.manage_livechannels));
 //        gridRowAdapter.add(getString(R.string.manage_add_suggested));
         gridRowAdapter.add(getString(R.string.manage_add_new));
 //        gridRowAdapter.add("Empty Plugin");
@@ -221,11 +207,10 @@ public class LeanbackFragment extends BrowseFragment
         mRowsAdapter.add(new ListRow(gridHeader, gridRowAdapter));
 
         //Settings will become its own activity
-        HeaderItem gridHeader2 = new HeaderItem(1, "Settings");
+        HeaderItem gridHeader2 = new HeaderItem(1, "Ajustes");
         GridItemPresenter mGridPresenter2 = new GridItemPresenter();
         ArrayObjectAdapter gridRowAdapter2 = new ArrayObjectAdapter(mGridPresenter2);
-        gridRowAdapter2.add(getString(R.string.settings_browse_plugins));
-        gridRowAdapter2.add(getString(R.string.settings_view_licenses));
+
         gridRowAdapter2.add(getString(R.string.settings_reset_channel_data));
         gridRowAdapter2.add(getString(R.string.about_app));
 //        gridRowAdapter2.add(getString(R.string.settings_read_xmltv));
