@@ -4,12 +4,22 @@ package com.felkertech.n.cumulustv.model;
  * Created by jhon on 31/05/16.
  */
 public class Extrainfo {
+    String id;
     String title;
     String description;
     String imgurl;
     String msgnot;
-
 //region getters and setters
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
