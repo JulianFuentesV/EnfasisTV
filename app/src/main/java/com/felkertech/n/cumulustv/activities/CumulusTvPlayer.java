@@ -133,7 +133,7 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
             }
         }
 
-        Toast.makeText(this, "Entro a TVPlayer",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Entro a TVPlayer",Toast.LENGTH_SHORT).show();
         receiver = new NotificacionReceiver(this);
 
         IntentFilter filter = new IntentFilter(NotificacionReceiver.ACTION);
