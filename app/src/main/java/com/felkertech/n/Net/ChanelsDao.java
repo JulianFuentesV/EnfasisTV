@@ -140,7 +140,9 @@ public class ChanelsDao {
 
                 JSONChannel[] dataJson = {
                         data.get(0),
-                        data.get(1)
+                        data.get(1),
+                        data.get(2),
+                        data.get(3)
                 };
                 dataBaseResponse.OnQueryResponseInJson(COMPLETE_RESPONSE,dataJson);
 
