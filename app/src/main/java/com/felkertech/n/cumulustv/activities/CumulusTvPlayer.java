@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v17.leanback.widget.BaseCardView;
+import android.support.v17.leanback.widget.ImageCardView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Surface;
@@ -14,7 +15,11 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AnimationSet;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -28,14 +33,17 @@ import com.felkertech.n.recievers.NotificacionReceiver;
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceList;
+import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+
 /**
  * Created by Nick on 7/12/2015.
  */
-public class CumulusTvPlayer extends AppCompatActivity implements NotificacionReceiver.OnNotificationListener {
+public class CumulusTvPlayer extends AppCompatActivity implements NotificacionReceiver.OnNotificationListener, View.OnClickListener {
     private String urlStream;
     private VideoView myVideoView;
     private URL url;
@@ -47,6 +55,12 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
     BaseCardView card;
     TextView msgInterface;
     MobileServiceClient mClient;
+    LinearLayout descriptionLayout;
+    LinearLayout relativeImg;
+    Button btnHide;
+    TextView title,description;
+    ImageView imgNot;
+
 
 
     @Override
@@ -91,6 +105,13 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
             final String url = parameters.getStringExtra(KEY_VIDEO_URL);
             if(!url.isEmpty()) {
                 setContentView(R.layout.full_surfaceview);
+                descriptionLayout = (LinearLayout) findViewById(R.id.linear_description);
+                relativeImg = (LinearLayout) findViewById(R.id.linear_img);
+                title = (TextView) findViewById(R.id.title_not);
+                description = (TextView) findViewById(R.id.description_not);
+                btnHide = (Button) findViewById(R.id.btn_not);
+                imgNot = (ImageView) findViewById(R.id.img_not);
+                btnHide.setOnClickListener(this);
                 SurfaceView sv = (SurfaceView) findViewById(R.id.surface);
                 exoPlayer = new TvInputPlayer();
                 exoPlayer.setSurface(sv.getHolder().getSurface());
@@ -154,8 +175,6 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
         IntentFilter filter = new IntentFilter(NotificacionReceiver.ACTION);
         registerReceiver(receiver, filter);
 
-        card = (BaseCardView) findViewById(R.id.card);
-        msgInterface = (TextView) findViewById(R.id.msg);
     }
 
     @Override
@@ -172,36 +191,33 @@ public class CumulusTvPlayer extends AppCompatActivity implements NotificacionRe
     }
 
     @Override
-    public void onNotification(String msg) {
+    public void onNotification(final String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
         ExtraInfoDao extraInfoDao = new ExtraInfoDao(mClient);
         extraInfoDao.getExtraInfo(new ExtraInfoDao.OnDataBaseResponse() {
             @Override
             public void OnQueryResponse(int state, MobileServiceList<Extrainfo> data) {
                 if (state ==ExtraInfoDao.COMPLETE_RESPONSE ){
-                    Toast.makeText(getApplicationContext(),data.get(0).getTitle(),Toast.LENGTH_SHORT).show();
-                    msgInterface.setText(data.get(0).getDescription());
-                    card.setVisibility(View.VISIBLE);
-
-                    ObjectAnimator animatorMostrar = ObjectAnimator.ofFloat(card, "alpha",0.0f,1.0f);
-                    animatorMostrar.setDuration(500);
-
-                    ObjectAnimator animatorOcultar = ObjectAnimator.ofFloat(card, "alpha",1.0f,0.0f);
-                    animatorOcultar.setDuration(500);
-
-                    AnimatorSet set = new AnimatorSet();
-                    set.play(animatorMostrar).before(animatorOcultar);
-                    set.play(animatorOcultar).after(2000);
-                    set.start();
-
+                    relativeImg.setVisibility(View.VISIBLE);
+                    descriptionLayout.setVisibility(View.VISIBLE);
+                    title.setText(data.get(0).getTitle());
+                    description.setText(data.get(0).getDescription());
+                    Picasso.with(getApplicationContext()).load(data.get(0).getImgurl()).into(imgNot);
                 }
 
                 else {
-                    Toast.makeText(getApplicationContext(),"Fallo not push",Toast.LENGTH_SHORT).show();
+
                 }
             }
         },msg);
 
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        descriptionLayout.setVisibility(View.GONE);
+        relativeImg.setVisibility(View.GONE);
     }
 }

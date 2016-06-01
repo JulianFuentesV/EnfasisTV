@@ -1,31 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/linear_img"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="#7986cb"
+        android:visibility="gone"
+    >
+
+        <ImageView
+            android:id="@+id/img_not"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            />
+
+        <Button
+            android:id="@+id/btn_not"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ocultar informacion"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:background="#C2185B"
+            />
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_toRightOf="@id/linear_img"
+    android:orientation="vertical"
+    >
+
     <SurfaceView
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
         android:layout_marginTop="8dp"
         android:id="@+id/surface"
         android:layout_gravity="center_horizontal"
-        android:layout_height="match_parent" />
 
-    <android.support.v17.leanback.widget.BaseCardView
+        />
 
-        android:id="@+id/card"
+    <LinearLayout
         android:visibility="gone"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:id="@+id/linear_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="#7986cb"
         >
 
         <TextView
-            android:id="@+id/msg"
+            android:id="@+id/title_not"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#ffffff"
-
+            android:layout_height="wrap_content"
+            android:text="Titulo"
+            android:textSize="22sp"
+            android:textColor="#c5cae9"
+            android:layout_margin="10dp"
+            android:background="#3f51b5"
+            android:elevation="8dp"
             />
 
-    </android.support.v17.leanback.widget.BaseCardView>
-</FrameLayout>
+        <TextView
+
+            android:id="@+id/description_not"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:elevation="8dp"
+            android:background="#3f51b5"
+            android:textColor="#c5cae9"
+            android:text="descripcion de todo lo que va a qui"
+            android:textSize="18sp"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+</RelativeLayout>
